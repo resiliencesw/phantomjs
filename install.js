@@ -64,9 +64,8 @@ kew.resolve(true)
   })
   .then(function () {
     var location = getTargetPlatform() === 'win32' ?
-        path.join(pkgPath, 'phantomjs.exe') :
+        path.join(pkgPath, 'bin', 'phantomjs.exe') :
         path.join(pkgPath, 'bin' ,'phantomjs')
-
     try {
       // Ensure executable is executable by all users
       fs.chmodSync(location, '755')
@@ -289,6 +288,7 @@ function copyIntoPlace(extractedPath, targetPath) {
     for (var i = 0; i < files.length; i++) {
       var file = path.join(extractedPath, files[i])
       if (fs.statSync(file).isDirectory() && file.indexOf(helper.version) != -1) {
+	    fs.mkdirsSync(targetPath, '0777')
         console.log('Copying extracted folder', file, '->', targetPath)
         return kew.nfcall(fs.move, file, targetPath)
       }
@@ -391,7 +391,7 @@ function getDownloadSpec() {
     checksum = 'fb850d56c033dd6e1142953904f62614'
   } else if (platform === 'win32') {
     downloadUrl += 'windows.zip'
-    checksum = 'c5eed3aeb356ee597a457ab5b1bea870'
+    checksum = '684c7706e3b14f7e0c3b9680f7c0cbe2'
   } else {
     return null
   }

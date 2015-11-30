@@ -1,8 +1,9 @@
 {
-  "name": "phantomjs",
-  "version": "1.9.19",
+  "name": "phantomjs2-ext",
+  "version": "2.0.0",
   "keywords": [
     "phantomjs",
+	"phantomjs2",
     "headless",
     "webkit"
   ],
